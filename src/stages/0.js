@@ -15,7 +15,7 @@ function execute(user, msg, firstName) {
     }
 
 
-    let menu = ' CARDAPIO \n\n'
+    let menu = ' PRODUTOS \n\n'
 
     Object.keys(menu0).forEach((value) => {
         let element = menu0[value]
@@ -26,7 +26,7 @@ function execute(user, msg, firstName) {
 
     return [
         menu,
-        `${time} ${firstName} sou o assistente virtual Ranger Amarelo!, irei apresentar o carpádio, para fazer o pedido basta enviar o codigo do produto`,
+        `${time} ${firstName} sou o assistente virtual Ranger Amarelo!, irei apresentar os produtos, para fazer o pedido basta enviar o codigo do produto`,
     ]
 }
 
