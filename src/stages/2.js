@@ -9,7 +9,7 @@ function execute(user, msg) {
         menu += `${value} - ${element.description}        R$ ${element.price} \n`
     })
 
-    if (msg === 'não') {
+    if (msg.match(/n..|N../g)) {
         db[user].stage = 1
         return [
             'Por favor selecione outro produto',

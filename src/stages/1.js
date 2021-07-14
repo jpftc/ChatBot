@@ -19,20 +19,23 @@ function execute(user, msg) {
         return ['Deseja finalizar o pedido?']
     }
 
-    if (!menu0[msg]) {
-        return [
-            'Código inválido, digite corretamente',
-            '```Digite # para finalizar ou * para cancelar```',
-        ]
+    if (msg.match(/\d/g)) {
+        if (!menu0[msg.match(/\d/g)[0]]) {
+            return [
+                'Código inválido, digite corretamente',
+                '```Digite # para finalizar ou * para cancelar```',
+            ]
+        } else {
+            db[user].itens.push(menu0[msg.match(/\d/g)[0]])
+            return [
+                '```Digite # para finalizar ou * para cancelar```',
+                `Item(${menu0[msg.match(/\d/g)[0]].description}) adiconado com sucesso`,
+                menu
+            ]
+        }
+    } else {
+        return ['Por favor digite um código da lista!']
     }
-
-    db[user].itens.push(menu0[msg])
-
-    return [
-        '```Digite # para finalizar ou * para cancelar```',
-        `Item(${menu0[msg].description}) adiconado com sucesso`,
-        menu
-    ]
 }
 
 exports.execute = execute

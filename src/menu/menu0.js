@@ -1,19 +1,19 @@
 const cardapio0 = {
   1: {
     description: 'Morfador',
-    price: '350.00',
+    price: 350,
   },
   2: {
     description: 'Arma Laser',
-    price: '600.95',
+    price: 600.95,
   },
   3: {
     description: 'Todos os episódios em VHS',
-    price: '4000.00',
+    price: 4000,
   },
   4: {
     description: 'Megazord',
-    price: '999.999.999',
+    price: 999999999,
   },
 }
 
