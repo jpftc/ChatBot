@@ -1,5 +1,6 @@
 const { menu0 } = require('../menu/menu0')
 const { db } = require('../models/banco')
+const axios = require('axios')
 
 function execute(user, msg) {
     let menu = ' PRODUTOS \n\n'
@@ -23,8 +24,31 @@ function execute(user, msg) {
     }
 
     if (msg === '#') {
+        return ['Digite o seu CEP por favor']
+    }
+
+    if (msg.match(/\d\d\d\d\d\d\d\d|\d\d\d\d\d-\d\d\d/g)) {
+        let url = `https://viacep.com.br/ws/${msg.match(/\d\d\d\d\d\d\d\d|\d\d\d\d\d-\d\d\d/g)[0]}/json/`
+        axios.get(url).then((response) => {
+            db[user].logradouro = response.data.logradouro
+            db[user].bairro = response.data.bairro
+            db[user].localidade = response.data.localidade
+            db[user].uf = response.data.uf
+        }).catch((err) => {
+            console.error(err)
+        })
+        return [
+            'Digite o numero da residência'
+        ]
+    }
+
+    if (msg.match(/\d{5}|\d{4}|\d{3}|\d{2}/g)) {
         db[user].stage = 3
-        return ['Digite o endereço por favor :']
+        let address = `${db[user].logradouro}, ${msg.match(/\d{5}|\d{4}|\d{3}|\d{2}/g)[0]} ${db[user].bairro} ${db[user].localidade} ${db[user].uf}?`
+        return [
+            address,
+            'Confirma o endereço:'
+        ]
     }
 
     let resumo = '  RESUMO DO PEDIDO \n'

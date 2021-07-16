@@ -7,15 +7,8 @@ function execute(user, msg) {
         return ['Pedido cancelado com sucesso']
     }
 
-    if (msg === '#') {
-        db[user].stage = 5
-        return ['Escolha a forma de pagamento:\n1️⃣-Dinheiro\n2️⃣-Cartão\n3️⃣-PIX']
-    }
-
-    return [
-        '```Digite # para continuar ou * para cancelar```',
-        `Confirma endereco de entrega : \n ${msg}`,
-    ]
+    db[user].stage = 5
+    return ['Escolha a forma de pagamento:\n1️⃣-Dinheiro\n2️⃣-Cartão\n3️⃣-PIX']
 }
 
 function getStage(user) {
